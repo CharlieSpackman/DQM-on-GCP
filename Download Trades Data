@@ -1,0 +1,11 @@
+pip install kaggle
+
+create directory kaggle
+
+change directory to kaggle
+
+add file kaggle.json with 
+{"username":"charliespackman","key":"c4384e67a19c1fa3996766f2952a880f"}
+
+
+kaggle datasets download
