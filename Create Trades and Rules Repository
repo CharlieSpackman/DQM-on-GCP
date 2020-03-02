@@ -1,8 +1,31 @@
-log in to GCP
+#log in to GCP
+gcloud config set project [PROJECT_ID]
+gcloud config set compute/zone [ZONE]
 
-Create Trades and Repository db in Cloud SQL
+#Create Compute Engine instance
+gcloud compute instances create Cloud_DQM
 
-Import SQL files
+#Connect to CE instance
+gcloud compute ssh Cloud_DQM
 
-Import trades csv data
+#Install MySQL
+sudo apt-get update
+sudo apt-get -y install mysql-server
 
+#Connect to MySQL
+sudo mysql -u root -p
+
+#Create db
+CREATE DATABASE Cloud_DQM_Trades;
+
+#Import tables
+CREATE TABLE DQ_rules (Rule_ID VARCHAR(20), Execution_DataTimeStamp DATETIME, System VARCHAR(20), 
+                            TotalRecords INT, PassedRecords INT, FailedRecords INT;
+                            
+CREATE TABLE trades_inflow (OptionType VARCHAR(20), Inflow_Time TIME, System VARCHAR(20), 
+                            Expiration VARCHAR(20), Strike DECIMAL, StockPrice DECIMAL, InflowDate DATE, 
+                            Spent DECIMAL, Sector VARCHAR(50),
+                            ExpirationDate DATE, ChainLocation VARCHAR(20);
+
+#Exit MySQL Instances
+Quit
