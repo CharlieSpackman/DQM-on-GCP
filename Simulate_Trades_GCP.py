@@ -1,5 +1,5 @@
 # Define Trades data and GCP credentials
-trades_raw = r"C:\Users\cspc\PycharmProjects\Learning\Trades.csv"
+trades_raw = "Trades.csv"
 project_id = "cloud-dqm"
 topic = "Receive_Trades"
 
