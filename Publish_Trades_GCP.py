@@ -43,9 +43,8 @@ class PublishTrades():
         for line in data_list[1:]:
             line_format = datetime.strptime(line[6], "%d/%m/%Y").date()
             line[6] = line_format.strftime("%Y-%m-%d")
-
             if line[9] == "":
-                pass
+                line[9] = None
             else:
                 line_format_1 = datetime.strptime(line[9], "%d/%m/%Y").date()
                 line[9] = line_format_1.strftime("%Y-%m-%d")
@@ -62,7 +61,11 @@ class PublishTrades():
         for lines in data_list[1:]:
 
             try:
-                if datetime.strptime(lines[9], "%Y/%m/%d").date() < datetime(2000, 1, 1).date():
+                if lines[9] == None:
+                    lines[11] = "0"
+                    lines[12] = "Fail - Blank date"
+
+                elif datetime.strptime(lines[9], "%Y-%m-%d").date() < datetime(2000, 1, 1).date():
 
                     lines[11] = "0"
                     lines[12] = "Fail - Invalid date"
