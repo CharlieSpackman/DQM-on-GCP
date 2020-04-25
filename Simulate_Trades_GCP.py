@@ -1,6 +1,6 @@
 # Define Trades data and GCP credentials
 trades_raw = "Trades.csv"
-project_id = "cloud-dqm"
+project_id = "dqm-on-cloud"
 topic = "Receive_Trades"
 
 # Import Class
