@@ -76,7 +76,7 @@ class PublishTrades():
 
             except ValueError:
                 lines[11] = "0"
-                lines[12] = "Fail - Blank date"
+                lines[12] = "NA - Error"
 
         return data_list
 
@@ -96,22 +96,22 @@ class PublishTrades():
 
     def streamTrades(self):
 
-        self.readFile()
-
-        publisher = self.createConnection()
-
         i = 1
-        file_complete = False
+
         trades = self.readFile()
         headers = trades[0]
+
+        publisher = self.createConnection()
 
         # Populate publish string
         for lines in trades[1:]:
             dict = {headers[i]: lines[i] for i in range(len(headers))}
 
+            id_str = str(i)
+            id_str = id_str.zfill(6)
             publish_message = json.dumps(dict, indent=4, sort_keys=True)
 
-            print("Publishing tades: ID-{}".format(i))
+            print("Publishing tades: ID-{}".format(id_str))
             self.publishMessage(publisher, publish_message)
 
             dict = dict.clear()
