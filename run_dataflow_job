@@ -1,5 +1,1 @@
-gcloud dataflow jobs run stream_trades_to_bq \
-    --gcs-location gs://dataflow-templates/latest/PubSub_Subscription_to_BigQuery \
-    --parameters \
-inputSubscription=projects/dqm-on-cloud/subscriptions/dataflow-pull,\
-outputTableSpec=dqm-on-cloud:trade_repo.processed_trades
+gcloud dataflow jobs run stream_trades_to_bq --gcs-location gs://dataflow-templates/latest/PubSub_Subscription_to_BigQuery --region europe-west2 --parameters inputSubscription=projects/dqm-on-cloud/subscriptions/dataflow-pull, outputTableSpec=dqm-on-cloud:trade_repo.processed_trades
